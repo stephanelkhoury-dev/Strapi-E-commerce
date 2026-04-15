@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!product) return {};
 
   const title = product.seo?.metaTitle || product.name;
-  const description = product.seo?.metaDescription || product.shortDescription || `Buy ${product.name} at ShopNow`;
+  const description = product.seo?.metaDescription || product.shortDescription || `Buy ${product.name} at Chic Clique`;
   const imageUrl = product.seo?.ogImage?.url || product.images?.[0]?.url;
 
   return {

@@ -54,10 +54,10 @@ AUTH_HEADER="Authorization: Bearer $JWT"
 
 # Create Categories
 echo "▸ Creating categories..."
-for cat in '{"name":"Electronics","slug":"electronics","description":"Phones, laptops, and gadgets","position":1}' \
-           '{"name":"Clothing","slug":"clothing","description":"T-shirts, jeans, and more","position":2}' \
-           '{"name":"Home & Garden","slug":"home-garden","description":"Furniture, decor, and tools","position":3}' \
-           '{"name":"Sports","slug":"sports","description":"Equipment and activewear","position":4}'; do
+for cat in '{"name":"Dresses","slug":"dresses","description":"Elegant dresses for every occasion","position":1}' \
+           '{"name":"Tops","slug":"tops","description":"Stylish tops, bodysuits, and corsets","position":2}' \
+           '{"name":"Bottoms","slug":"bottoms","description":"Jeans, pants, skirts, and leggings","position":3}' \
+           '{"name":"Co-ords","slug":"co-ords","description":"Matching sets and co-ord outfits","position":4}'; do
   NAME=$(echo "$cat" | grep -o '"name":"[^"]*"' | cut -d'"' -f4)
   RESULT=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$STRAPI_URL/api/categories" \
     -H "Content-Type: application/json" \
@@ -73,9 +73,7 @@ echo ""
 
 # Create Brands
 echo "▸ Creating brands..."
-for brand in '{"name":"TechCorp","slug":"techcorp","description":"Leading technology company"}' \
-             '{"name":"StyleHouse","slug":"stylehouse","description":"Modern fashion brand"}' \
-             '{"name":"HomeLife","slug":"homelife","description":"Home essentials brand"}'; do
+for brand in '{"name":"Chic Clique","slug":"chic-clique","description":"Leading online fashion brand designed and produced in Lebanon"}'; do
   NAME=$(echo "$brand" | grep -o '"name":"[^"]*"' | cut -d'"' -f4)
   RESULT=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$STRAPI_URL/api/brands" \
     -H "Content-Type: application/json" \
@@ -91,8 +89,7 @@ echo ""
 
 # Create Coupons
 echo "▸ Creating coupons..."
-for coupon in '{"code":"WELCOME10","type":"percentage","value":10,"minOrderAmount":50,"maxUses":100,"active":true}' \
-              '{"code":"FLAT20","type":"fixed","value":20,"minOrderAmount":100,"maxUses":50,"active":true}'; do
+for coupon in '{"code":"CC10","type":"percentage","value":10,"minOrderAmount":0,"maxUses":10000,"active":true}'; do
   CODE=$(echo "$coupon" | grep -o '"code":"[^"]*"' | cut -d'"' -f4)
   RESULT=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$STRAPI_URL/api/coupons" \
     -H "Content-Type: application/json" \
@@ -113,14 +110,14 @@ RESULT=$(curl -s -o /dev/null -w "%{http_code}" -X PUT "$STRAPI_URL/api/global-s
   -H "$AUTH_HEADER" \
   -d '{
     "data": {
-      "siteName": "ShopNow",
-      "siteDescription": "Premium products at unbeatable prices",
+      "siteName": "Chic Clique",
+      "siteDescription": "Leading online fashion & clothing brand designed and produced in Lebanon",
       "currency": "USD",
       "currencySymbol": "$",
-      "taxRate": 8.5,
-      "contactEmail": "support@shopnow.com",
-      "contactPhone": "+1 (555) 123-4567",
-      "address": "123 Commerce St, New York, NY 10001"
+      "taxRate": 0,
+      "contactEmail": "info@chiccliquestore.com",
+      "contactPhone": "+961",
+      "address": "Lebanon"
     }
   }')
 echo "  ✓ Global settings configured"

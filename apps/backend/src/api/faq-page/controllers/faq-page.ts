@@ -1,5 +1,3 @@
 import { factories } from '@strapi/strapi';
 
-export default factories.createCoreController('api:: default factories.createCoreController('api:: default factor faexport default fastrapi/strapi';
-
-export default factories.createCoreService('api::faq-page.faq-page');
+export default factories.createCoreController('api::faq-page.faq-page');

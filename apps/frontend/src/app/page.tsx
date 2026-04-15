@@ -18,7 +18,7 @@ export default async function HomePage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "ShopNow",
+    name: "Chic Clique",
     url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
     potentialAction: {
       "@type": "SearchAction",
@@ -35,19 +35,19 @@ export default async function HomePage() {
       />
 
       {/* Hero Section */}
-      <section className="relative bg-linear-to-r from-blue-600 to-indigo-700 text-white">
+      <section className="relative bg-linear-to-r from-pink-600 to-rose-700 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
           <div className="max-w-2xl">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              Discover Premium Products for Every Lifestyle
+              New Arrivals Every Week
             </h1>
-            <p className="text-lg sm:text-xl text-blue-100 mb-8">
-              Shop our curated collection of high-quality products. Free shipping on orders over $50.
+            <p className="text-lg sm:text-xl text-pink-100 mb-8">
+              Designed & produced in Lebanon. Supreme quality fashion for all sizes, shapes, and styles. Free delivery on orders over $40.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/categories"
-                className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-pink-600 rounded-lg font-semibold hover:bg-pink-50 transition-colors"
               >
                 Shop Now
                 <ArrowRight size={18} />
@@ -68,13 +68,13 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { icon: Truck, title: "Free Shipping", desc: "On orders over $50" },
-              { icon: Shield, title: "Secure Payment", desc: "Stripe & PayPal" },
-              { icon: RotateCcw, title: "Easy Returns", desc: "30-day return policy" },
-              { icon: Headphones, title: "24/7 Support", desc: "Always here to help" },
+              { icon: Truck, title: "Free Delivery", desc: "On orders over $40" },
+              { icon: Shield, title: "Secure Payment", desc: "Safe & trusted checkout" },
+              { icon: RotateCcw, title: "3-Day Exchange", desc: "Easy exchange policy" },
+              { icon: Headphones, title: "WhatsApp Support", desc: "Quick & personal help" },
             ].map((feature) => (
               <div key={feature.title} className="flex flex-col items-center text-center">
-                <div className="w-12 h-12 bg-blue-50 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-3">
+                <div className="w-12 h-12 bg-pink-50 dark:bg-pink-900/30 rounded-full flex items-center justify-center mb-3">
                   <feature.icon size={24} className="text-primary" />
                 </div>
                 <h3 className="font-semibold text-sm">{feature.title}</h3>
@@ -165,17 +165,17 @@ export default async function HomePage() {
       )}
 
       {/* CTA Banner */}
-      <section className="py-20 bg-linear-to-r from-indigo-600 to-purple-700 text-white">
+      <section className="py-20 bg-linear-to-r from-pink-600 to-rose-700 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            Ready to Start Shopping?
+            10% OFF Your First Order
           </h2>
-          <p className="text-lg text-indigo-100 max-w-2xl mx-auto mb-8">
-            Join thousands of satisfied customers. Find everything you need at prices you&apos;ll love.
+          <p className="text-lg text-pink-100 max-w-2xl mx-auto mb-8">
+            Use code CC10 at checkout. Designed &amp; produced in Lebanon with supreme quality for all sizes, shapes, and styles.
           </p>
           <Link
             href="/categories"
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-indigo-600 rounded-lg font-semibold hover:bg-indigo-50 transition-colors"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-pink-600 rounded-lg font-semibold hover:bg-pink-50 transition-colors"
           >
             Browse All Products
             <ArrowRight size={18} />

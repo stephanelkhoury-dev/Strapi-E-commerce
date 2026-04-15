@@ -42,7 +42,7 @@ export function Header() {
       <header className="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-border shadow-sm">
         {/* Top bar */}
         <div className="bg-primary text-white text-center text-sm py-1.5 px-4">
-          Free shipping on orders over $50 — Shop Now!
+          10% OFF ON YOUR FIRST ORDER — USE CODE: CC10
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -52,7 +52,7 @@ export function Header() {
               href="/"
               className="shrink-0 text-2xl font-bold text-primary"
             >
-              ShopNow
+              Chic Clique
             </Link>
 
             {/* Desktop Navigation */}

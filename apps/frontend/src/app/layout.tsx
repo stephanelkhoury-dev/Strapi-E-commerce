@@ -16,15 +16,15 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
   ),
   title: {
-    default: "ShopNow — Premium E-Commerce Store",
-    template: "%s | ShopNow",
+    default: "Chic Clique — Fashion & Clothing Brand | Lebanon",
+    template: "%s | Chic Clique",
   },
   description:
-    "Discover premium products at unbeatable prices. Fast shipping, secure payments, and excellent customer service.",
+    "Chic Clique — Leading online fashion & clothing brand designed and produced in Lebanon. New arrivals every week. Free delivery on orders over $40.",
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "ShopNow",
+    siteName: "Chic Clique",
   },
   twitter: {
     card: "summary_large_image",

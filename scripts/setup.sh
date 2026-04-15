@@ -20,7 +20,6 @@ echo "▸ Checking prerequisites..."
 
 command -v node >/dev/null 2>&1 || { echo "✗ Node.js is required. Install from https://nodejs.org"; exit 1; }
 command -v pnpm >/dev/null 2>&1 || { echo "✗ pnpm is required. Run: npm install -g pnpm@9"; exit 1; }
-command -v docker >/dev/null 2>&1 || { echo "✗ Docker is required. Install from https://docker.com"; exit 1; }
 
 NODE_VERSION=$(node -v | sed 's/v//' | cut -d. -f1)
 if [ "$NODE_VERSION" -lt 20 ]; then
@@ -30,28 +29,36 @@ fi
 
 echo "  ✓ Node.js $(node -v)"
 echo "  ✓ pnpm $(pnpm -v)"
-echo "  ✓ Docker $(docker --version | awk '{print $3}' | tr -d ',')"
 echo ""
 
 # Start database services
-echo "▸ Starting PostgreSQL and Redis..."
-docker compose up -d
-echo "  ✓ Database services running"
-echo ""
+if ! command -v docker >/dev/null 2>&1; then
+  echo "⚠ Docker not installed. Skipping database services."
+  echo "  → Install from https://docker.com to use PostgreSQL + Redis"
+elif ! docker info >/dev/null 2>&1; then
+  echo "⚠ Docker is not running. Skipping database services."
+  echo "  → Start Docker Desktop and run this script again"
+else
+  echo "  ✓ Docker $(docker --version | awk '{print $3}' | tr -d ',')"
+  echo ""
+  echo "▸ Starting PostgreSQL and Redis..."
+  docker compose up -d
+  echo "  ✓ Database services running"
+  echo ""
 
-# Wait for PostgreSQL to be ready
-echo "▸ Waiting for PostgreSQL..."
-for i in $(seq 1 30); do
-  if docker exec postgres pg_isready -U strapi -q 2>/dev/null; then
-    echo "  ✓ PostgreSQL ready"
-    break
-  fi
-  if [ "$i" -eq 30 ]; then
-    echo "  ✗ PostgreSQL did not become ready in time"
-    exit 1
-  fi
-  sleep 1
-done
+  # Wait for PostgreSQL to be ready
+  echo "▸ Waiting for PostgreSQL..."
+  for i in $(seq 1 30); do
+    if docker exec strapi_postgres pg_isready -U strapi -q 2>/dev/null; then
+      echo "  ✓ PostgreSQL ready"
+      break
+    fi
+    if [ "$i" -eq 30 ]; then
+      echo "  ⚠ PostgreSQL may not be ready yet"
+    fi
+    sleep 1
+  done
+fi
 echo ""
 
 # Set up environment files

@@ -56,10 +56,8 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { name: "Facebook", href: "#", icon: FacebookIcon },
-  { name: "Instagram", href: "#", icon: InstagramIcon },
-  { name: "Twitter", href: "#", icon: TwitterIcon },
-  { name: "YouTube", href: "#", icon: YoutubeIcon },
+  { name: "Facebook", href: "https://www.facebook.com/p/Chicclique-61575058804314/", icon: FacebookIcon },
+  { name: "Instagram", href: "https://www.instagram.com/chiccliquelb/", icon: InstagramIcon },
 ];
 
 export function Footer() {
@@ -75,10 +73,10 @@ export function Footer() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
               <h2 className="text-xl font-bold text-white">
-                Subscribe to our newsletter
+                Want to Collab?
               </h2>
               <p className="text-gray-400 mt-1">
-                Get 10% off your first order and stay updated on new arrivals.
+                Sign up for discounts + updates. Use code CC10 for 10% off your first order.
               </p>
             </div>
             <NewsletterForm />
@@ -92,10 +90,10 @@ export function Footer() {
           {/* Brand */}
           <div>
             <Link href="/" className="text-2xl font-bold text-white">
-              ShopNow
+              Chic Clique
             </Link>
             <p className="mt-3 text-sm text-gray-400">
-              Premium products at unbeatable prices. Quality you can trust.
+              Leading online fashion &amp; clothing brand designed and produced in Lebanon.
             </p>
             <div className="flex space-x-4 mt-4">
               {socialLinks.map((social) => (
@@ -170,10 +168,10 @@ export function Footer() {
       <div className="border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} ShopNow. All rights reserved.
+            &copy; {new Date().getFullYear()} Chic Clique. All rights reserved.
           </p>
           <div className="flex items-center space-x-4 text-sm text-gray-500">
-            <span>Secure payments by Stripe & PayPal</span>
+            <span>Designed & Produced in Lebanon</span>
           </div>
         </div>
       </div>

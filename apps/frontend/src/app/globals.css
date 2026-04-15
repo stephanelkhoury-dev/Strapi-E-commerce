@@ -3,9 +3,9 @@
 :root {
   --background: #ffffff;
   --foreground: #111827;
-  --primary: #2563eb;
-  --primary-hover: #1d4ed8;
-  --primary-light: #dbeafe;
+  --primary: #db2777;
+  --primary-hover: #be185d;
+  --primary-light: #fce7f3;
   --secondary: #f59e0b;
   --secondary-hover: #d97706;
   --muted: #6b7280;
@@ -36,9 +36,9 @@
   :root {
     --background: #0f172a;
     --foreground: #f1f5f9;
-    --primary: #3b82f6;
-    --primary-hover: #2563eb;
-    --primary-light: #1e3a5f;
+    --primary: #ec4899;
+    --primary-hover: #db2777;
+    --primary-light: #4a1942;
     --border: #334155;
     --muted: #94a3b8;
     --card: #1e293b;

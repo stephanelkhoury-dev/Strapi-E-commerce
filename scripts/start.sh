@@ -17,11 +17,24 @@ TARGET="${1:-all}"
 
 start_db() {
   echo "▸ Starting database services..."
+
+  if ! command -v docker >/dev/null 2>&1; then
+    echo "  ⚠ Docker not installed. Skipping database services."
+    echo "  → Install Docker from https://docker.com"
+    return 0
+  fi
+
+  if ! docker info >/dev/null 2>&1; then
+    echo "  ⚠ Docker is not running. Skipping database services."
+    echo "  → Start Docker Desktop and try again."
+    return 0
+  fi
+
   docker compose up -d
   
   # Wait for PostgreSQL
   for i in $(seq 1 30); do
-    if docker exec postgres pg_isready -U strapi -q 2>/dev/null; then
+    if docker exec strapi_postgres pg_isready -U strapi -q 2>/dev/null; then
       echo "  ✓ PostgreSQL ready (port 5432)"
       echo "  ✓ Redis ready (port 6379)"
       return
