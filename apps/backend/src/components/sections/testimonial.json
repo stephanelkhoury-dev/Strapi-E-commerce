@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_sections_testimonial",
+  "info": {
+    "displayName": "Testimonial",
+    "icon": "quote",
+    "description": "Customer testimonial"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "quote": {
+      "type": "text",
+      "required": true
+    },
+    "avatar": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "role": {
+      "type": "string"
+    }
+  }
+}

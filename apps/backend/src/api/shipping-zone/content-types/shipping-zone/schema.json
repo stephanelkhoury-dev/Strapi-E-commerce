@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "shipping_zones",
+  "info": {
+    "singularName": "shipping-zone",
+    "pluralName": "shipping-zones",
+    "displayName": "Shipping Zone",
+    "description": "Shipping zone with rates"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "countries": {
+      "type": "json",
+      "required": true
+    },
+    "rates": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shipping.rate"
+    }
+  }
+}

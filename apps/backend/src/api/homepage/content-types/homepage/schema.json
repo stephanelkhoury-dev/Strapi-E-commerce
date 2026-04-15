@@ -1,0 +1,51 @@
+{
+  "kind": "singleType",
+  "collectionName": "homepage",
+  "info": {
+    "singularName": "homepage",
+    "pluralName": "homepages",
+    "displayName": "Homepage",
+    "description": "Homepage content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.hero"
+    },
+    "featuredProducts": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.featured-products"
+    },
+    "banners": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.banner"
+    },
+    "testimonials": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.testimonial"
+    },
+    "newArrivalsTitle": {
+      "type": "string",
+      "default": "New Arrivals"
+    },
+    "newsletterTitle": {
+      "type": "string",
+      "default": "Subscribe to our newsletter"
+    },
+    "newsletterDescription": {
+      "type": "text"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}

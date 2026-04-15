@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_product_specification",
+  "info": {
+    "displayName": "Specification",
+    "icon": "list",
+    "description": "Product specification key-value pair"
+  },
+  "options": {},
+  "attributes": {
+    "key": {
+      "type": "string",
+      "required": true
+    },
+    "value": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

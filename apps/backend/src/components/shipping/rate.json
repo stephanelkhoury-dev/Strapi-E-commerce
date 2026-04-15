@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_shipping_rate",
+  "info": {
+    "displayName": "Shipping Rate",
+    "icon": "truck",
+    "description": "Shipping rate tier"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "minWeight": {
+      "type": "decimal",
+      "default": 0
+    },
+    "maxWeight": {
+      "type": "decimal"
+    },
+    "price": {
+      "type": "decimal",
+      "required": true
+    },
+    "estimatedDays": {
+      "type": "string"
+    }
+  }
+}
