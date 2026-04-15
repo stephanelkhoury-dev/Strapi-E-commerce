@@ -6,7 +6,7 @@ import { useCartStore } from "@/lib/store/cart";
 import { getStrapiImageUrl } from "@/lib/strapi";
 import { toast } from "@/components/ui/Toaster";
 import { formatPrice } from "@/lib/utils";
-import type { Product, ProductVariant } from "shared/src/types";
+import type { Product, ProductVariant } from "@/types";
 
 interface ProductInfoProps {
   product: Product;

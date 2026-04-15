@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Star } from "lucide-react";
-import type { Product, Review } from "shared/src/types";
+import type { Product, Review } from "@/types";
 
 interface ProductTabsProps {
   product: Product;

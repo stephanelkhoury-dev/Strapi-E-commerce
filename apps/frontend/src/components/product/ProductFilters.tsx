@@ -1,8 +1,8 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { Brand } from "shared/src/types";
-import { SORT_OPTIONS } from "shared/src/constants";
+import { Brand } from "@/types";
+import { SORT_OPTIONS } from "@/constants";
 import { useState, useCallback } from "react";
 
 interface Props {

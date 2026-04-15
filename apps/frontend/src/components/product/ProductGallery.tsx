@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { getStrapiImageUrl } from "@/lib/strapi";
-import type { StrapiImage } from "shared/src/types";
+import type { StrapiImage } from "@/types";
 
 interface ProductGalleryProps {
   images: StrapiImage[];

@@ -3,7 +3,7 @@ import { getProducts, getBrands } from "@/lib/strapi";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { ProductCard } from "@/components/product/ProductCard";
 import { ProductFilters } from "@/components/product/ProductFilters";
-import { ITEMS_PER_PAGE } from "shared/src/constants";
+import { ITEMS_PER_PAGE } from "@/constants";
 import { Search as SearchIcon } from "lucide-react";
 
 interface Props {

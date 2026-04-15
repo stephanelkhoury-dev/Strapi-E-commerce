@@ -4,7 +4,7 @@ import { getCategoryBySlug, getCategorySlugs, getProducts, getBrands, getStrapiI
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { ProductCard } from "@/components/product/ProductCard";
 import { ProductFilters } from "@/components/product/ProductFilters";
-import { ITEMS_PER_PAGE } from "shared/src/constants";
+import { ITEMS_PER_PAGE } from "@/constants";
 
 interface Props {
   params: Promise<{ slug: string }>;

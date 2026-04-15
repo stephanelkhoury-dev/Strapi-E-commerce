@@ -7,7 +7,7 @@ import { formatPrice } from "@/lib/utils";
 import { getStrapiImageUrl } from "@/lib/strapi";
 import { useCartStore } from "@/lib/store/cart";
 import { toast } from "@/components/ui/Toaster";
-import type { Product } from "shared/src/types";
+import type { Product } from "@/types";
 
 interface ProductCardProps {
   product: Product;
