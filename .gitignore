@@ -14,3 +14,5 @@ tmp
 temp
 .vercel
 .env*.local
+.strapi
+.strapi-updater.json
