@@ -1,4 +1,5 @@
 {
+  "installCommand": "pnpm install --filter=frontend... --filter=shared",
   "buildCommand": "cd apps/frontend && npx next build",
   "framework": "nextjs",
   "outputDirectory": "apps/frontend/.next"
