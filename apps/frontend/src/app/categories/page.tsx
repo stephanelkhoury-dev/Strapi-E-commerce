@@ -25,7 +25,7 @@ export default async function CategoriesPage() {
             href={`/categories/${cat.slug}`}
             className="group relative overflow-hidden rounded-2xl border border-border bg-white dark:bg-gray-900 transition-shadow hover:shadow-lg"
           >
-            <div className="aspect-[4/3] relative bg-gray-100 dark:bg-gray-800">
+            <div className="aspect-4/3 relative bg-gray-100 dark:bg-gray-800">
               {cat.image?.url ? (
                 <Image
                   src={getStrapiImageUrl(cat.image.url)}

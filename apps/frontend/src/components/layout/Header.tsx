@@ -50,7 +50,7 @@ export function Header() {
             {/* Logo */}
             <Link
               href="/"
-              className="flex-shrink-0 text-2xl font-bold text-primary"
+              className="shrink-0 text-2xl font-bold text-primary"
             >
               ShopNow
             </Link>

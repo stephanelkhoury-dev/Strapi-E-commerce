@@ -37,7 +37,7 @@ export default async function ContactPage() {
           <div className="space-y-4">
             {(page?.email || true) && (
               <div className="flex items-start gap-3">
-                <Mail size={20} className="text-primary mt-0.5 flex-shrink-0" aria-hidden="true" />
+                <Mail size={20} className="text-primary mt-0.5 shrink-0" aria-hidden="true" />
                 <div>
                   <p className="font-medium">Email</p>
                   <a href={`mailto:${page?.email || "support@example.com"}`} className="text-muted hover:text-primary">
@@ -48,7 +48,7 @@ export default async function ContactPage() {
             )}
             {(page?.phone || true) && (
               <div className="flex items-start gap-3">
-                <Phone size={20} className="text-primary mt-0.5 flex-shrink-0" aria-hidden="true" />
+                <Phone size={20} className="text-primary mt-0.5 shrink-0" aria-hidden="true" />
                 <div>
                   <p className="font-medium">Phone</p>
                   <a href={`tel:${page?.phone || "+1234567890"}`} className="text-muted hover:text-primary">
@@ -59,7 +59,7 @@ export default async function ContactPage() {
             )}
             {(page?.address || true) && (
               <div className="flex items-start gap-3">
-                <MapPin size={20} className="text-primary mt-0.5 flex-shrink-0" aria-hidden="true" />
+                <MapPin size={20} className="text-primary mt-0.5 shrink-0" aria-hidden="true" />
                 <div>
                   <p className="font-medium">Address</p>
                   <p className="text-muted">{page?.address || "123 Commerce St, Suite 100, New York, NY 10001"}</p>

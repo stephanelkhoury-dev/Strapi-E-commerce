@@ -67,7 +67,7 @@ export default async function SearchPage({ searchParams }: Props) {
 
       {q ? (
         <div className="flex flex-col lg:flex-row gap-8">
-          <aside className="lg:w-64 flex-shrink-0">
+          <aside className="lg:w-64 shrink-0">
             <ProductFilters
               brands={brands}
               currentBrand={brand}

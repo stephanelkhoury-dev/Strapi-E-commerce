@@ -60,7 +60,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
 
       <div className="flex flex-col lg:flex-row gap-8 mt-6">
         {/* Sidebar filters */}
-        <aside className="lg:w-64 flex-shrink-0">
+        <aside className="lg:w-64 shrink-0">
           <ProductFilters
             brands={brands}
             currentBrand={brand}

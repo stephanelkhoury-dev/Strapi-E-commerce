@@ -44,7 +44,7 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
     <>
       {/* Overlay */}
       <div
-        className="fixed inset-0 bg-black/50 z-[60] transition-opacity"
+        className="fixed inset-0 bg-black/50 z-60 transition-opacity"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -55,7 +55,7 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
         role="dialog"
         aria-modal="true"
         aria-label="Shopping cart"
-        className="fixed right-0 top-0 h-full w-full max-w-md bg-white dark:bg-gray-900 z-[70] shadow-2xl flex flex-col"
+        className="fixed right-0 top-0 h-full w-full max-w-md bg-white dark:bg-gray-900 z-70 shadow-2xl flex flex-col"
       >
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-border">
@@ -97,7 +97,7 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
                   className="flex gap-4 py-3 border-b border-border last:border-0"
                 >
                   {/* Image */}
-                  <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 bg-gray-100">
+                  <div className="relative w-20 h-20 rounded-lg overflow-hidden shrink-0 bg-gray-100">
                     {item.image && (
                       <Image
                         src={item.image}
@@ -145,7 +145,7 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
                           <Minus size={14} />
                         </button>
                         <span
-                          className="px-3 text-sm font-medium min-w-[2rem] text-center"
+                          className="px-3 text-sm font-medium min-w-8 text-center"
                           aria-label={`Quantity: ${item.quantity}`}
                         >
                           {item.quantity}

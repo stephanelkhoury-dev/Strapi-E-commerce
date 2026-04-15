@@ -39,7 +39,7 @@ export function FAQAccordion({ items }: Props) {
                 <span>{item.question}</span>
                 <ChevronDown
                   size={18}
-                  className={`flex-shrink-0 ml-2 transition-transform ${isOpen ? "rotate-180" : ""}`}
+                  className={`shrink-0 ml-2 transition-transform ${isOpen ? "rotate-180" : ""}`}
                   aria-hidden="true"
                 />
               </button>

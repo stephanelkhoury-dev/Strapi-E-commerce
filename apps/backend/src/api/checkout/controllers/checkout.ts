@@ -7,7 +7,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
   /**
    * POST /api/checkout/stripe - Create a Stripe checkout session
    */
-  async createStripeSession(ctx) {
+  async createStripeSession(ctx: any) {
     const { items, customerEmail, shippingAddress, billingAddress, couponCode } = ctx.request.body;
 
     if (!items?.length || !customerEmail) {
@@ -65,7 +65,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
       body: params.toString(),
     });
 
-    const session = await response.json();
+    const session: any = await response.json();
 
     if (!response.ok) {
       strapi.log.error('Stripe session creation failed', session);
@@ -81,7 +81,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
   /**
    * POST /api/checkout/stripe/webhook - Handle Stripe webhooks
    */
-  async stripeWebhook(ctx) {
+  async stripeWebhook(ctx: any) {
     const sig = ctx.request.headers['stripe-signature'];
     const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
@@ -143,7 +143,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
   /**
    * POST /api/checkout/paypal/create - Create a PayPal order
    */
-  async createPayPalOrder(ctx) {
+  async createPayPalOrder(ctx: any) {
     const { items, customerEmail, shippingAddress, billingAddress, couponCode } = ctx.request.body;
 
     if (!items?.length || !customerEmail) {
@@ -174,7 +174,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
       body: 'grant_type=client_credentials',
     });
 
-    const authData = await authResponse.json();
+    const authData: any = await authResponse.json();
 
     if (!authResponse.ok) {
       strapi.log.error('PayPal auth failed', authData);
@@ -203,7 +203,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
       }),
     });
 
-    const orderData = await orderResponse.json();
+    const orderData: any = await orderResponse.json();
 
     if (!orderResponse.ok) {
       strapi.log.error('PayPal order creation failed', orderData);
@@ -219,7 +219,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
   /**
    * POST /api/checkout/paypal/capture - Capture a PayPal payment
    */
-  async capturePayPalOrder(ctx) {
+  async capturePayPalOrder(ctx: any) {
     const { paypalOrderId, items, customerEmail, customerName, shippingAddress, billingAddress, couponCode } = ctx.request.body;
 
     if (!paypalOrderId) {
@@ -241,7 +241,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
       },
       body: 'grant_type=client_credentials',
     });
-    const authData = await authResponse.json();
+    const authData: any = await authResponse.json();
 
     // Capture payment
     const captureResponse = await fetch(`${baseURL}/v2/checkout/orders/${encodeURIComponent(paypalOrderId)}/capture`, {
@@ -252,7 +252,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
       },
     });
 
-    const captureData = await captureResponse.json();
+    const captureData: any = await captureResponse.json();
 
     if (captureData.status !== 'COMPLETED') {
       return ctx.badRequest('Payment capture failed');
@@ -277,7 +277,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
   /**
    * POST /api/checkout/validate-coupon - Validate a coupon code
    */
-  async validateCoupon(ctx) {
+  async validateCoupon(ctx: any) {
     const { code, subtotal } = ctx.request.body;
 
     if (!code) {

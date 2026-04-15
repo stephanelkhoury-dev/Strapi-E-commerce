@@ -81,7 +81,7 @@ export default function CartPage() {
                 key={`${item.productId}-${item.variantId || ""}`}
                 className="flex gap-4 p-4 border border-border rounded-xl bg-white dark:bg-gray-900"
               >
-                <div className="relative w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden bg-gray-100">
+                <div className="relative w-24 h-24 shrink-0 rounded-lg overflow-hidden bg-gray-100">
                   <Image
                     src={getStrapiImageUrl(item.image)}
                     alt={item.name}
@@ -113,7 +113,7 @@ export default function CartPage() {
                       >
                         <Minus size={14} />
                       </button>
-                      <span className="px-3 text-sm font-medium min-w-[2rem] text-center">
+                      <span className="px-3 text-sm font-medium min-w-8 text-center">
                         {item.quantity}
                       </span>
                       <button

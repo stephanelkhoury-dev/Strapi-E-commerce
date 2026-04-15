@@ -50,7 +50,7 @@ export default function AccountPage() {
             href={href}
             className="flex gap-4 p-5 rounded-xl border border-border bg-white dark:bg-gray-900 hover:shadow-md transition-shadow"
           >
-            <Icon size={24} className="text-primary flex-shrink-0 mt-0.5" aria-hidden="true" />
+            <Icon size={24} className="text-primary shrink-0 mt-0.5" aria-hidden="true" />
             <div>
               <p className="font-semibold">{label}</p>
               <p className="text-sm text-muted mt-0.5">{desc}</p>

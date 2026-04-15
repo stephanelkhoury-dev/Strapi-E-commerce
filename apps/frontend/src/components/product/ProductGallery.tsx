@@ -47,7 +47,7 @@ export function ProductGallery({ images, productName }: ProductGalleryProps) {
               role="tab"
               aria-selected={index === selectedIndex}
               aria-label={`View image ${index + 1} of ${images.length}`}
-              className={`relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 border-2 transition-colors ${
+              className={`relative w-20 h-20 rounded-lg overflow-hidden shrink-0 border-2 transition-colors ${
                 index === selectedIndex
                   ? "border-primary"
                   : "border-transparent hover:border-gray-300"

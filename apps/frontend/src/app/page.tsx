@@ -35,7 +35,7 @@ export default async function HomePage() {
       />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+      <section className="relative bg-linear-to-r from-blue-600 to-indigo-700 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
           <div className="max-w-2xl">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
@@ -102,7 +102,7 @@ export default async function HomePage() {
                 <Link
                   key={category.documentId}
                   href={`/categories/${category.slug}`}
-                  className="group relative aspect-[4/3] rounded-xl overflow-hidden bg-gray-100"
+                  className="group relative aspect-4/3 rounded-xl overflow-hidden bg-gray-100"
                 >
                   {category.image ? (
                     <Image
@@ -114,9 +114,9 @@ export default async function HomePage() {
                       loading="lazy"
                     />
                   ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600" />
+                    <div className="w-full h-full bg-linear-to-br from-blue-500 to-purple-600" />
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-4">
                     <h3 className="text-white font-semibold text-lg">{category.name}</h3>
                   </div>
@@ -165,7 +165,7 @@ export default async function HomePage() {
       )}
 
       {/* CTA Banner */}
-      <section className="py-20 bg-gradient-to-r from-indigo-600 to-purple-700 text-white">
+      <section className="py-20 bg-linear-to-r from-indigo-600 to-purple-700 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
             Ready to Start Shopping?
