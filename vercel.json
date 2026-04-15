@@ -1,6 +1,5 @@
 {
   "buildCommand": "cd apps/frontend && npx next build",
-  "installCommand": "corepack enable && pnpm install",
   "framework": "nextjs",
   "outputDirectory": "apps/frontend/.next"
 }
