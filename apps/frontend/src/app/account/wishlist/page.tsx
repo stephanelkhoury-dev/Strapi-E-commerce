@@ -24,7 +24,7 @@ export default function WishlistPage() {
     async function fetchWishlist() {
       try {
         const res = await fetch(
-          `${STRAPI_URL}/api/wishlists?filters[user][id][$eq]=${user?.id}&populate[products][populate]=images,category,brand`,
+          `${STRAPI_URL}/api/wishlists?filters[user][id][$eq]=${user?.id}&populate[products][populate][0]=images&populate[products][populate][1]=category&populate[products][populate][2]=brand`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         const data = await res.json();

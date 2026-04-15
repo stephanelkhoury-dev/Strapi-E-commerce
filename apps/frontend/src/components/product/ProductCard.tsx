@@ -18,7 +18,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
   const imageUrl = product.images?.[0]
     ? getStrapiImageUrl(product.images[0].url)
-    : "/images/placeholder.jpg";
+    : "/images/placeholder.svg";
 
   const imageAlt =
     product.images?.[0]?.alternativeText || product.name;

@@ -9,7 +9,7 @@
 # Usage:
 #   ./scripts/seed-chicclique.sh
 #
-set -euo pipefail
+set -uo pipefail
 
 STRAPI_URL="${STRAPI_URL:-http://localhost:1337}"
 
@@ -27,11 +27,14 @@ fi
 echo "✓ Strapi is running at $STRAPI_URL"
 echo ""
 
-# Prompt for admin credentials
-echo "Enter Strapi admin credentials:"
-read -r -p "  Email: " ADMIN_EMAIL
-read -r -s -p "  Password: " ADMIN_PASSWORD
-echo ""
+# Get admin credentials (from env or prompt)
+if [ -z "${ADMIN_EMAIL:-}" ]; then
+  read -r -p "  Email: " ADMIN_EMAIL
+fi
+if [ -z "${ADMIN_PASSWORD:-}" ]; then
+  read -r -s -p "  Password: " ADMIN_PASSWORD
+  echo ""
+fi
 echo ""
 
 # Login
@@ -51,33 +54,39 @@ echo ""
 
 AUTH_HEADER="Authorization: Bearer $JWT"
 
-# Helper: create entry and return documentId
+# Helper: create collection entry via content-manager and return documentId
 create_entry() {
-  local endpoint="$1"
+  local content_type="$1"  # e.g. "brand" -> api::brand.brand
   local data="$2"
+  local uid="api::${content_type}.${content_type}"
   local response
-  response=$(curl -s -X POST "$STRAPI_URL/api/$endpoint" \
+  response=$(curl -s -X POST "$STRAPI_URL/content-manager/collection-types/$uid" \
     -H "Content-Type: application/json" \
     -H "$AUTH_HEADER" \
-    -d "{\"data\":$data}")
-  echo "$response" | grep -o '"documentId":"[^"]*"' | head -1 | cut -d'"' -f4
+    -d "$data")
+  local doc_id
+  doc_id=$(echo "$response" | grep -o '"documentId":"[^"]*"' | head -1 | cut -d'"' -f4 2>/dev/null || true)
+  echo "$doc_id"
 }
 
-# Helper: update single type
+# Helper: update single type via content-manager
 update_single() {
-  local endpoint="$1"
+  local content_type="$1"  # e.g. "about-page" -> api::about-page.about-page
   local data="$2"
-  curl -s -o /dev/null -w "%{http_code}" -X PUT "$STRAPI_URL/api/$endpoint" \
+  local uid="api::${content_type}.${content_type}"
+  local status
+  status=$(curl -s -o /dev/null -w "%{http_code}" -X PUT "$STRAPI_URL/content-manager/single-types/$uid" \
     -H "Content-Type: application/json" \
     -H "$AUTH_HEADER" \
-    -d "{\"data\":$data}"
+    -d "$data" 2>/dev/null || true)
+  echo "$status"
 }
 
 ###############################################################################
 # 1. BRAND
 ###############################################################################
 echo "▸ Creating brand..."
-BRAND_ID=$(create_entry "brands" '{
+BRAND_ID=$(create_entry "brand" '{
   "name": "Chic Clique",
   "slug": "chic-clique",
   "description": "Chic Clique is a leading online fashion and clothing brand designed and produced in Lebanon. Our mission is to provide for all sizes, shapes, and styles with supreme quality at the best prices."
@@ -95,7 +104,7 @@ echo ""
 echo "▸ Creating categories..."
 
 # Main categories
-CAT_DRESSES_ID=$(create_entry "categories" '{
+CAT_DRESSES_ID=$(create_entry "category" '{
   "name": "Dresses",
   "slug": "dresses",
   "description": "Elegant dresses for every occasion — party, casual, and formal styles designed and produced in Lebanon.",
@@ -103,7 +112,7 @@ CAT_DRESSES_ID=$(create_entry "categories" '{
 }')
 echo "  ✓ Category: Dresses"
 
-CAT_TOPS_ID=$(create_entry "categories" '{
+CAT_TOPS_ID=$(create_entry "category" '{
   "name": "Tops",
   "slug": "tops",
   "description": "Stylish tops, bodysuits, corsets, and shirts. From casual basics to statement pieces.",
@@ -111,7 +120,7 @@ CAT_TOPS_ID=$(create_entry "categories" '{
 }')
 echo "  ✓ Category: Tops"
 
-CAT_BOTTOMS_ID=$(create_entry "categories" '{
+CAT_BOTTOMS_ID=$(create_entry "category" '{
   "name": "Bottoms",
   "slug": "bottoms",
   "description": "Jeans, pants, skirts, shorts, and leggings for every style and occasion.",
@@ -119,7 +128,7 @@ CAT_BOTTOMS_ID=$(create_entry "categories" '{
 }')
 echo "  ✓ Category: Bottoms"
 
-CAT_COORDS_ID=$(create_entry "categories" '{
+CAT_COORDS_ID=$(create_entry "category" '{
   "name": "Co-ords",
   "slug": "co-ords",
   "description": "Matching sets and co-ord outfits — effortless style in one purchase.",
@@ -127,7 +136,7 @@ CAT_COORDS_ID=$(create_entry "categories" '{
 }')
 echo "  ✓ Category: Co-ords"
 
-CAT_OUTERWEAR_ID=$(create_entry "categories" '{
+CAT_OUTERWEAR_ID=$(create_entry "category" '{
   "name": "Outerwear",
   "slug": "outerwear",
   "description": "Jackets, blazers, coats, and trench coats for layered looks.",
@@ -135,7 +144,7 @@ CAT_OUTERWEAR_ID=$(create_entry "categories" '{
 }')
 echo "  ✓ Category: Outerwear"
 
-CAT_SPORTSWEAR_ID=$(create_entry "categories" '{
+CAT_SPORTSWEAR_ID=$(create_entry "category" '{
   "name": "Sportswear",
   "slug": "sportswear",
   "description": "Activewear sets, sports bras, leggings, and tracksuits for your workout style.",
@@ -143,7 +152,7 @@ CAT_SPORTSWEAR_ID=$(create_entry "categories" '{
 }')
 echo "  ✓ Category: Sportswear"
 
-CAT_SWIMWEAR_ID=$(create_entry "categories" '{
+CAT_SWIMWEAR_ID=$(create_entry "category" '{
   "name": "Swimwear",
   "slug": "swimwear",
   "description": "Bikinis and swimsuits for the beach and pool.",
@@ -151,7 +160,7 @@ CAT_SWIMWEAR_ID=$(create_entry "categories" '{
 }')
 echo "  ✓ Category: Swimwear"
 
-CAT_ACCESSORIES_ID=$(create_entry "categories" '{
+CAT_ACCESSORIES_ID=$(create_entry "category" '{
   "name": "Accessories",
   "slug": "accessories",
   "description": "Essentials and accessories — tights, tapes, adhesive bras, and more.",
@@ -159,7 +168,7 @@ CAT_ACCESSORIES_ID=$(create_entry "categories" '{
 }')
 echo "  ✓ Category: Accessories"
 
-CAT_SALE_ID=$(create_entry "categories" '{
+CAT_SALE_ID=$(create_entry "category" '{
   "name": "Sale",
   "slug": "sale",
   "description": "Discounted items — grab them before they are gone!",
@@ -167,7 +176,7 @@ CAT_SALE_ID=$(create_entry "categories" '{
 }')
 echo "  ✓ Category: Sale"
 
-CAT_ABAYAS_ID=$(create_entry "categories" '{
+CAT_ABAYAS_ID=$(create_entry "category" '{
   "name": "Abayas",
   "slug": "abayas",
   "description": "Elegant abayas with modern designs — golden, glitter, and classic styles.",
@@ -180,7 +189,7 @@ echo ""
 # 3. COUPON
 ###############################################################################
 echo "▸ Creating coupons..."
-create_entry "coupons" '{
+create_entry "coupon" '{
   "code": "CC10",
   "type": "percentage",
   "value": 10,
@@ -201,7 +210,7 @@ create_product() {
   local name="$1" slug="$2" price="$3" compare="$4" cat_id="$5" desc="$6" featured="$7" stock="$8"
   local cat_field=""
   if [ -n "$cat_id" ]; then
-    cat_field="\"category\": \"$cat_id\","
+    cat_field="\"category\": { \"connect\": [{ \"documentId\": \"$cat_id\" }] },"
   fi
   local compare_field=""
   if [ -n "$compare" ] && [ "$compare" != "0" ]; then
@@ -209,7 +218,7 @@ create_product() {
   fi
   local brand_field=""
   if [ -n "$BRAND_ID" ]; then
-    brand_field="\"brand\": \"$BRAND_ID\","
+    brand_field="\"brand\": { \"connect\": [{ \"documentId\": \"$BRAND_ID\" }] },"
   fi
 
   local data="{
@@ -229,7 +238,7 @@ create_product() {
   }"
 
   local result
-  result=$(create_entry "products" "$data")
+  result=$(create_entry "product" "$data")
   if [ -n "$result" ]; then
     echo "  ✓ $name (\$$price)"
   else
@@ -535,7 +544,7 @@ echo ""
 # 11. SHIPPING ZONE
 ###############################################################################
 echo "▸ Creating shipping zone..."
-create_entry "shipping-zones" '{
+create_entry "shipping-zone" '{
   "name": "Lebanon",
   "countries": ["LB"],
   "rates": [

@@ -76,7 +76,10 @@ export async function getProducts(params?: {
   search?: string;
 }) {
   const searchParams = new URLSearchParams();
-  searchParams.set("populate", "images,category,brand,seo");
+  searchParams.set("populate[0]", "images");
+  searchParams.set("populate[1]", "category");
+  searchParams.set("populate[2]", "brand");
+  searchParams.set("populate[3]", "seo");
 
   if (params?.page) searchParams.set("pagination[page]", String(params.page));
   if (params?.pageSize) searchParams.set("pagination[pageSize]", String(params.pageSize));
@@ -97,13 +100,13 @@ export async function getProducts(params?: {
 export async function getProductBySlug(slug: string) {
   const searchParams = new URLSearchParams();
   searchParams.set("filters[slug][$eq]", slug);
-  searchParams.set("populate[images]", "*");
-  searchParams.set("populate[category]", "*");
-  searchParams.set("populate[brand]", "*");
-  searchParams.set("populate[variants]", "*");
-  searchParams.set("populate[reviews][populate]", "author");
-  searchParams.set("populate[specifications]", "*");
-  searchParams.set("populate[seo][populate]", "ogImage");
+  searchParams.set("populate[0]", "images");
+  searchParams.set("populate[1]", "category");
+  searchParams.set("populate[2]", "brand");
+  searchParams.set("populate[3]", "variants");
+  searchParams.set("populate[4]", "reviews");
+  searchParams.set("populate[5]", "specifications");
+  searchParams.set("populate[6]", "seo");
 
   const res = await fetchStrapi<StrapiResponse<Product[]>>(
     `/products?${searchParams.toString()}`,
@@ -129,14 +132,14 @@ export async function getProductSlugs() {
 // ===== Categories =====
 export async function getCategories() {
   return fetchStrapi<StrapiResponse<Category[]>>(
-    "/categories?populate=image,children,parent,seo&sort=position:asc",
+    "/categories?populate[0]=image&populate[1]=children&populate[2]=parent&populate[3]=seo&sort=position:asc",
     { tags: ["categories"], revalidate: 3600 }
   );
 }
 
 export async function getCategoryBySlug(slug: string) {
   const res = await fetchStrapi<StrapiResponse<Category[]>>(
-    `/categories?filters[slug][$eq]=${slug}&populate=image,seo,children,parent`,
+    `/categories?filters[slug][$eq]=${slug}&populate[0]=image&populate[1]=seo&populate[2]=children&populate[3]=parent`,
     { tags: [`category-${slug}`], revalidate: 3600 }
   );
   return res.data?.[0] || null;
@@ -161,7 +164,7 @@ export async function getBrands() {
 // ===== Homepage =====
 export async function getHomepage() {
   return fetchStrapi<{ data: Homepage }>(
-    "/homepage?populate[hero][populate]=image&populate[featuredProducts][populate][products][populate]=images,category&populate[banners][populate]=image&populate[testimonials][populate]=avatar&populate[seo][populate]=ogImage",
+    "/homepage?populate[hero][populate]=image&populate[featuredProducts][populate][products][populate][0]=images&populate[featuredProducts][populate][products][populate][1]=category&populate[banners][populate]=image&populate[testimonials][populate]=avatar&populate[seo][populate]=ogImage",
     { tags: ["homepage"], revalidate: 60 }
   );
 }
@@ -169,7 +172,7 @@ export async function getHomepage() {
 // ===== Global Settings =====
 export async function getGlobalSettings() {
   return fetchStrapi<{ data: GlobalSettings }>(
-    "/global-setting?populate=logo,favicon,defaultSeo.ogImage",
+    "/global-setting?populate[0]=logo&populate[1]=favicon&populate[2]=defaultSeo.ogImage",
     { tags: ["global-settings"], revalidate: 3600 }
   );
 }
@@ -193,7 +196,7 @@ export async function getShippingZones() {
 // ===== Pages =====
 export async function getAboutPage() {
   return fetchStrapi<{ data: any }>(
-    "/about-page?populate=image,seo.ogImage",
+    "/about-page?populate[0]=image&populate[1]=seo.ogImage",
     { tags: ["about-page"], revalidate: 3600 }
   );
 }
@@ -207,7 +210,7 @@ export async function getContactPage() {
 
 export async function getFaqPage() {
   return fetchStrapi<{ data: any }>(
-    "/faq-page?populate=items,seo.ogImage",
+    "/faq-page?populate[0]=items&populate[1]=seo.ogImage",
     { tags: ["faq-page"], revalidate: 3600 }
   );
 }
